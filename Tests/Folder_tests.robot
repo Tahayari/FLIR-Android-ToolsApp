@@ -1,5 +1,6 @@
 *** Settings ***
 Library             AppiumLibrary
+Library    String
 Resource            ../Resources/android-res.robot
 
 *** Variables ***
@@ -9,8 +10,6 @@ ${FOLDERNAME-XPATH}                     //android.widget.TextView[@text="${FOLDE
 *** Test Cases ***
 Create a new folder
     Launch ToolsAndroid
-    # Skip First Time Open
-
     tap                                 ${LIBRARY-ADDFOLDER-BUTTON}
     wait until page contains element    ${LIBRARY-NEWFOLDER-TITLE}
     input text                          ${LIBRARY-FOLDERNAME-FIELD}     ${FOLDERNAME}
@@ -20,5 +19,8 @@ Create a new folder
 
 Just a test
     Launch ToolsAndroid
-    Wait Until Keyword Succeeds    10x    200ms    Scroll Down If Element Not Found    ${FOLDERNAME-XPATH}
-    Log    Found the folder!
+    Swipe Up        ${LIBRARY-FILESANDFOLDERS-LIST}
+    Swipe Up        ${LIBRARY-FILESANDFOLDERS-LIST}
+    Swipe Up        ${LIBRARY-FILESANDFOLDERS-LIST}
+    Swipe Down      ${LIBRARY-FILESANDFOLDERS-LIST}
+    Swipe Down      ${LIBRARY-FILESANDFOLDERS-LIST}
