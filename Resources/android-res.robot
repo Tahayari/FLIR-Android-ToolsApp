@@ -1,6 +1,6 @@
 *** Settings ***
 Library     AppiumLibrary
-Library    String
+Library     String
 
 *** Variables ***
 # *** APP VARIABLES ***
