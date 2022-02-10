@@ -1,20 +1,17 @@
 *** Settings ***
 Library             AppiumLibrary
 Library             String
-Resource            ../Resources/android-res.robot
-Documentation    Create a new folder with a random name
-Library          AppiumLibrary
-
-*** Variables ***
-${FOLDERNAME}                           new folder 123
-${FOLDERNAME-XPATH}                     //android.widget.TextView[@text="${FOLDERNAME}"]
+Suite Setup         Launch ToolsAndroid
+Suite Teardown      Close Application
+Resource            ../../Resources/android-res.robot
+Resource            ../../Resources/library.robot
+Documentation       Create a new folder with a random 7 character string. Verify if it was created successfully in the Library
 
 *** Test Cases ***
 Create a new folder
-    Launch ToolsAndroid
-    Tap                                 ${LIBRARY-ADDFOLDER-BUTTON}
-    Wait Until Page Contains Element    ${LIBRARY-NEWFOLDER-TITLE}
-    Input Text                          ${LIBRARY-FOLDERNAME-FIELD}     ${FOLDERNAME}
-    Tap                                 ${LIBRARY-CREATEFOLDER-BUTTON}
-    Wait Until Page Contains Element    ${NAVIGATION-LIBRARY-BUTTON}
-    Wait Until Keyword Succeeds         5x    200ms    Scroll Down If Element Not Found    ${FOLDERNAME-XPATH}
+    [Tags]                              Sanity
+    # Launch ToolsAndroid
+    ${FOLDERNAME}=                      Generate Random String      7
+    ${FOLDERNAME-XPATH}=                Set Variable       //android.widget.TextView[@text="${FOLDERNAME}"]
+    Create A New Folder                 ${FOLDERNAME}
+    # Close Application
