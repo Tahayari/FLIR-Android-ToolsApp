@@ -1,7 +1,7 @@
 *** Settings ***
 Library             AppiumLibrary
 Library             String
-Resource            ../../Resources/android-res.robot
+Resource            ../../Resources/common.robot
 Resource            ../../Resources/library.robot
 Documentation       Create a new folder with a random 7 character string. Rename it to some other random string.
 

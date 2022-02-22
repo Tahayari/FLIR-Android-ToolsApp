@@ -1,12 +1,11 @@
 *** Settings ***
 Library             AppiumLibrary
 Library             String
-Library    DateTime
+Library             DateTime
 Suite Setup         Launch ToolsAndroid
 Suite Teardown      Close Application
-Resource            ../../Resources/android-res.robot
+Resource            ../../Resources/common.robot
 Resource            ../../Resources/library.robot
-Resource            ../../Resources/settings.robot
 
 *** Test Cases ***
 Import TC

@@ -4,7 +4,7 @@ Library             String
 Library             DateTime
 Suite Setup         Launch ToolsAndroid
 Suite Teardown      Close Application
-Resource            ../../Resources/android-res.robot
+Resource            ../../Resources/common.robot
 Resource            ../../Resources/library.robot
 Resource            ../../Resources/settings.robot
 
@@ -37,7 +37,7 @@ Delete a file
 
 Import all files from the first detected camera
     ${current-date}                                 Get Current Date    result_format=%Y-%m-%d %H-%M-%S.%f
-    ${import-destination-foldername}                Set Variable    Import Folder ${current-date}
+    ${import-destination-foldername}                Set Variable        Import Folder ${current-date}
     Create a new folder                             ${import-destination-foldername}
     Navigate to Devices Tab
-    Import files to a destination folder            ${import-destination-foldername}  
+    Import files to a destination folder            ${import-destination-foldername}

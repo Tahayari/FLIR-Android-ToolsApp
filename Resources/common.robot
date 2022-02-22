@@ -1,7 +1,8 @@
 *** Settings ***
-Library     AppiumLibrary
-Library     String
-Resource    library.robot
+Library         AppiumLibrary
+Library         String
+Resource        library.robot
+Resource        settings.robot
 
 *** Variables ***
 # *** APP VARIABLES ***
@@ -16,6 +17,9 @@ ${ANDROID-STORAGE-DENY-BUTTON}          id=com.android.permissioncontroller:id/p
 ${ANDROID-LOCATION-ALLOW-BUTTON}        id=com.android.permissioncontroller:id/permission_allow_foreground_only_button
 ${ANDROID-LOCATION-DENY-BUTTON}         id=com.android.permissioncontroller:id/permission_deny_button
 
+#***ANDROID CAPABILITIES***
+${ANDROID-SERVER-PORT}                  4723
+
 #*** NAVIGATION BAR***
 ${NAVIGATION-LIBRARY-BUTTON}            id=${APP-ID}:id/btnFlirLibrary
 ${NAVIGATION-DEVICES-BUTTON}            id=${APP-ID}:id/btnFlirDevices
@@ -23,7 +27,7 @@ ${NAVIGATION-SETTINGS-BUTTON}           id=${APP-ID}:id/btnFlirSettings
 
 *** Keywords ***
 Launch ToolsAndroid
-    open application    http://localhost:4723/wd/hub    platformName=Android   noReset=true    autoGrantPermissions=false    appPackage=${APP-ID}    appActivity=${APP-ACTIVITY}   automationName=UIAutomator2
+    open application    http://localhost:${ANDROID-SERVER-PORT}/wd/hub    platformName=Android   noReset=true    autoGrantPermissions=false    appPackage=${APP-ID}    appActivity=${APP-ACTIVITY}   automationName=UIAutomator2
 
 Allow Storage Permission
     Wait Until Page Contains Element     ${ANDROID-STORAGE-ALLOW-BUTTON}

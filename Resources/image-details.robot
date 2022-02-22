@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    ../Resources/android-res.robot
+Resource    ../Resources/common.robot
 
 *** Variables ***
 
