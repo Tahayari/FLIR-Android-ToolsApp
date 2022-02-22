@@ -1,11 +1,12 @@
 *** Settings ***
 Library             AppiumLibrary
 Library             String
+Library             DateTime
 Suite Setup         Launch ToolsAndroid
 Suite Teardown      Close Application
 Resource            ../../Resources/android-res.robot
 Resource            ../../Resources/library.robot
-Documentation       Create a new folder with a random 7 character string. Rename it to some other random string.
+Resource            ../../Resources/settings.robot
 
 *** Test Cases ***
 Rename a folder
@@ -27,9 +28,16 @@ Create a new folder
     ${FOLDERNAME-XPATH}=                Set Variable       //android.widget.TextView[@text="${FOLDERNAME}"]
     Create A New Folder                 ${FOLDERNAME}
 
-Delete a folder
+Delete a file
     [Tags]                              Sanity
     ${FOLDERNAME}=                      Generate Random String      7
     ${FOLDERNAME-XPATH}=                Set Variable       //android.widget.TextView[@text="${FOLDERNAME}"]
     Create A New Folder                 ${FOLDERNAME}
     Delete a file or folder             ${FOLDERNAME}
+
+Import all files from the first detected camera
+    ${current-date}                                 Get Current Date    result_format=%Y-%m-%d %H-%M-%S.%f
+    ${import-destination-foldername}                Set Variable    Import Folder ${current-date}
+    Create a new folder                             ${import-destination-foldername}
+    Navigate to Devices Tab
+    Import files to a destination folder            ${import-destination-foldername}  

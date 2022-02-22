@@ -4,6 +4,7 @@ Resource    ../Resources/devices.robot
 
 *** Variables ***
 #*** LIBRARY PAGE***
+${LIBRARY-MYFILES-TITLE}                //android.widget.FrameLayout[@content-desc="Library"]
 ${LIBRARY-ADDFOLDER-BUTTON}             id=${APP-ID}:id/iv_toolbar_add
 ${LIBRARY-SAVE-BUTTON}                  //android.widget.TextView[@text="Save"]
 ${LIBRARY-NEWFOLDER-TITLE}              //android.widget.TextView[@text="New folder"]
@@ -87,20 +88,13 @@ Swipe Down
 
 Create a new folder
     [Arguments]     ${FOLDERNAME}
-    ${FOLDERNAME-XPATH}=                Set Variable       //android.widget.TextView[@text="${FOLDERNAME}"]
-    Tap                                 ${LIBRARY-ADDFOLDER-BUTTON}
-    Wait Until Page Contains Element    ${LIBRARY-NEWFOLDER-TITLE}
-    Input Text                          ${LIBRARY-FILEFOLDERNAME-FIELD}     ${FOLDERNAME}
-    Tap                                 ${LIBRARY-CREATEFOLDER-BUTTON}
-    Wait Until Page Contains Element    ${NAVIGATION-LIBRARY-BUTTON}
-    ${result}=    Run Keyword And Return Status    Wait Until Page Contains Element    ${FOLDERNAME-XPATH}
-    IF    "${result}" == "False"
-        ${result}=    Run Keyword And Return Status    Wait Until Keyword Succeeds         5x    200ms    Scroll Down If Element Not Found    ${FOLDERNAME-XPATH}
-    END
-    IF    "${result}" == "False"
-        Wait Until Keyword Succeeds         5x    200ms    Scroll Up If Element Not Found    ${FOLDERNAME-XPATH}
-    END
-
+    ${FOLDERNAME-XPATH}=                        Set Variable       //android.widget.TextView[@text="${FOLDERNAME}"]
+    Tap                                         ${LIBRARY-ADDFOLDER-BUTTON}
+    Wait Until Page Contains Element            ${LIBRARY-NEWFOLDER-TITLE}
+    Input Text                                  ${LIBRARY-FILEFOLDERNAME-FIELD}     ${FOLDERNAME}
+    Tap                                         ${LIBRARY-CREATEFOLDER-BUTTON}
+    Wait Until Page Contains Element            ${NAVIGATION-LIBRARY-BUTTON}
+    Scroll Up And Down In Search For Element    ${FOLDERNAME-XPATH}
     
 Open Options Menu For File/Folder
     [Arguments]     ${FILENAME}

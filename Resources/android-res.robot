@@ -1,6 +1,7 @@
 *** Settings ***
 Library     AppiumLibrary
 Library     String
+Resource    library.robot
 
 *** Variables ***
 # *** APP VARIABLES ***
@@ -32,3 +33,28 @@ Allow Storage Permission
 Allow Location Permission
     Wait Until Page Contains Element     ${ANDROID-LOCATION-ALLOW-BUTTON}
     Tap                                  ${ANDROID-LOCATION-ALLOW-BUTTON}
+
+Navigate to Library Tab
+    Tap                                  ${NAVIGATION-LIBRARY-BUTTON}
+    Wait Until Page Contains Element     ${LIBRARY-MYFILES-TITLE}
+    Log                                  "Navigated to the Library Tab"
+
+Navigate to Devices Tab
+    Tap                                  ${NAVIGATION-DEVICES-BUTTON}
+    Wait Until Page Contains Element     ${DEVICES-REFRESH-BUTTON}
+    Log                                  "Navigated to the Devices Tab"
+
+Navigate to Settings Tab
+    Tap                                  ${NAVIGATION-SETTINGS-BUTTON}
+    Wait Until Page Contains Element     ${SETTINGS-TITLE}
+    Log                                  "Navigated to the Settings Tab"
+
+Scroll Up And Down In Search For Element
+    [Arguments]        ${FOLDERNAME-XPATH}
+    ${result}=    Run Keyword And Return Status    Wait Until Page Contains Element    ${FOLDERNAME-XPATH}
+    IF    "${result}" == "False"
+        ${result}=    Run Keyword And Return Status    Wait Until Keyword Succeeds         5x    200ms    Scroll Down If Element Not Found    ${FOLDERNAME-XPATH}
+    END
+    IF    "${result}" == "False"
+        Wait Until Keyword Succeeds         5x    200ms    Scroll Up If Element Not Found    ${FOLDERNAME-XPATH}
+    END
