@@ -1,54 +1,13 @@
 *** Settings ***
-Resource    ../Resources/common.robot
-Resource    ../Resources/devices.robot
-
-*** Variables ***
-#*** LIBRARY PAGE***
-${LIBRARY-MYFILES-TITLE}                //android.widget.FrameLayout[@content-desc="Library"]
-${LIBRARY-ADDFOLDER-BUTTON}             id=${APP-ID}:id/iv_toolbar_add
-${LIBRARY-SAVE-BUTTON}                  //android.widget.TextView[@text="Save"]
-${LIBRARY-NEWFOLDER-TITLE}              //android.widget.TextView[@text="New folder"]
-${LIBRARY-RENAME-TITLE}                 //android.widget.TextView[@text="Rename"]
-${LIBRARY-FILEFOLDERNAME-FIELD}         id=${APP-ID}:id/et_file_folder_name
-${LIBRARY-CREATEFOLDER-BUTTON}          id=${APP-ID}:id/tv_proceed_button
-${LIBRARY-FILESANDFOLDERS-LIST}         id=${APP-ID}:id/rv_items
-
-#***FILE/FOLDER OPTIONS CONTEXT MENU***
-${LIBRARY-OPTIONS-DETAILS}              id=${APP-ID}:id/action_details
-${LIBRARY-OPTIONS-COPY}                 id=${APP-ID}:id/action_copy
-${LIBRARY-OPTIONS-MOVE}                 id=${APP-ID}:id/action_move
-${LIBRARY-OPTIONS-RENAME}               id=${APP-ID}:id/action_rename
-${LIBRARY-OPTIONS-DELETE}               id=${APP-ID}:id/action_delete
-${LIBRARY-OPTIONS-CLOSE}                id=${APP-ID}:id/action_close
-
-# ***DIALOG WINDOWS***
-${DELETE-DIALOG-TITLE}                  //android.widget.TextView[@text="Delete"]
-${DELETE-DIALOG-DELETE-BUTTON}          //android.widget.Button[@text="Delete"]
-
-#***TOAST MESSAGES***
-${LIBRARY-RENAME-SUCCESS-TOAST}         //android.widget.TextView[@text="Folder renamed"]
-${LIBRARY-DELETE-SUCCESS-TOAST}         //*[contains(@text,"successfully deleted")]
-
-#*** ONBOARDING PAGE***
-${ONBOARDING-NEXT-BUTTON}               id=${APP-ID}:id/tvNext
+Documentation   This page conains sser defined keywords that are specific to the Library page only
+Resource        ./Resources/Locators.robot
+Resource        ./Resources/Config.robot
+Resource        ./Resources/UserDefinedKeywords.robot
+Library         String
 
 
 *** Keywords ***
-Skip Tutorial
-    Tap                                  ${ONBOARDING-NEXT-BUTTON}
-    Tap                                  ${ONBOARDING-NEXT-BUTTON}
-    Tap                                  ${ONBOARDING-NEXT-BUTTON}
-    Tap                                  ${ONBOARDING-NEXT-BUTTON}
-    Tap                                  ${ONBOARDING-NEXT-BUTTON}
 
-Skip First Time Open
-    Skip Tutorial
-    Allow Storage Permission
-    Tap                                  ${NAVIGATION-DEVICES-BUTTON}
-    Allow Location Permission
-    Dismiss Meterlink Support Notification
-    Dismiss Meterlink Support Notification  #existing bug that displays the Meterlink notification twice when the app is opened for the first time
-    Tap                                  ${NAVIGATION-LIBRARY-BUTTON}
 
 Scroll Down If Element Not Found
     [Arguments]                    ${ELEMENT-TO-BE-FOUND}

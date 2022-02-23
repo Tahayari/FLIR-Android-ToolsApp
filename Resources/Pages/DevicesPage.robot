@@ -1,23 +1,7 @@
 *** Settings ***
-Resource    ../Resources/common.robot
-
-*** Variables ***
-${DEVICES-REFRESH-BUTTON}               id=${APP-ID}:id/fsiv_sync
-${DEVICES-DEVICEDISCOVERED-LIST}        //android.widget.TextView[@resource-id="${APP-ID}:id/tv_camera_name"]
-${DEVICES-DESTFOLDER-TITLE}             //android.widget.TextView[@text="Select folder"]
-${DEVICES-DESTFOLDER-IMPORT-BUTTON}     //android.widget.TextView[@resource-id="${APP-ID}:id/tv_proceed_button"]
-${DEVICES-DESTFOLDER-FOLDER-LIST}       //android.widget.TextView[@resource-id="${APP-ID}:id/tv_file_name"]
-${DEVICES-IMPORTSTARTED-TOAST}          //android.widget.TextView[@text="Import started"]
-${DEVICES-IMPORTFINISHED-TOAST}         //android.widget.TextView[@text="Import finished"]
-
-#***SELECT FILES FROM CAMERA WINDOW***
-${DEVICES-CAMERADIR-WINDOW}             //androidx.recyclerview.widget.RecyclerView[@resource-id="${APP-ID}:id/com.flir.tools:id/rv_camera_files_to_select"]
-${DEVICES-CAMERADIR-NEXT-BUTTON}        id=${APP-ID}:id/iv_next
-
-# *** METERLINK SUPPORT WINDOW***
-${METERLINK-MESSAGE}                    //android.widget.TextView[@text="Currently we do not support Meterlink devices."]
-${METERLINK-DONTDISPLAY-CHECKBOX}       id=${APP-ID}:id/do_not_show_dialog_again_checkbox
-${METERLINK-OK-BUTTON}                  //android.widget.LinearLayout[@resource-id="${APP-ID}:id/ll_verify_buttons_container"]//android.widget.Button
+Documentation   This page conains sser defined keywords that are specific to the Devices page only
+Resource        ./Resources/Locators.robot
+Resource        ./Resources/UserDefinedKeywords.robot
 
 *** Keywords ***
 Dismiss Meterlink Support Notification
@@ -45,4 +29,3 @@ Import files to a destination folder
     Tap                                 ${DEVICES-DESTFOLDER-IMPORT-BUTTON}
     Wait Until Element Is Visible       ${DEVICES-IMPORTSTARTED-TOAST}
     Wait Until Element Is Visible       ${DEVICES-IMPORTFINISHED-TOAST}     30
-#    Sleep                               30s   #wait for a couple of files to be imported

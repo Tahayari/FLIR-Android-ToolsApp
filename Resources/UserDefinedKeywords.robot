@@ -1,29 +1,15 @@
 *** Settings ***
-Library         AppiumLibrary
 Library         String
-Resource        library.robot
-Resource        settings.robot
+Resource        Config.robot
+Resource        Locators.robot
 
 *** Variables ***
-# *** APP VARIABLES ***
-${PROD-APP-ID}                          com.flir.tools
-${DEBUG-APP-ID}                         com.flir.tools.debug
-${APP-ID}                               ${DEBUG-APP-ID}                     #SET which app to test. PROD or DEBUG build
-${APP-ACTIVITY}                         com.flir.cloudlib.ui.FlirCloudActivity
 
 #*** ANDROID VARIABLES***
 ${ANDROID-STORAGE-ALLOW-BUTTON}         id=com.android.permissioncontroller:id/permission_allow_button
 ${ANDROID-STORAGE-DENY-BUTTON}          id=com.android.permissioncontroller:id/permission_deny_button
 ${ANDROID-LOCATION-ALLOW-BUTTON}        id=com.android.permissioncontroller:id/permission_allow_foreground_only_button
 ${ANDROID-LOCATION-DENY-BUTTON}         id=com.android.permissioncontroller:id/permission_deny_button
-
-#***ANDROID CAPABILITIES***
-${ANDROID-SERVER-PORT}                  4723
-
-#*** NAVIGATION BAR***
-${NAVIGATION-LIBRARY-BUTTON}            id=${APP-ID}:id/btnFlirLibrary
-${NAVIGATION-DEVICES-BUTTON}            id=${APP-ID}:id/btnFlirDevices
-${NAVIGATION-SETTINGS-BUTTON}           id=${APP-ID}:id/btnFlirSettings
 
 *** Keywords ***
 Launch ToolsAndroid
@@ -62,3 +48,19 @@ Scroll Up And Down In Search For Element
     IF    "${result}" == "False"
         Wait Until Keyword Succeeds         5x    200ms    Scroll Up If Element Not Found    ${FOLDERNAME-XPATH}
     END
+
+Skip Tutorial
+    Tap                                  ${ONBOARDING-NEXT-BUTTON}
+    Tap                                  ${ONBOARDING-NEXT-BUTTON}
+    Tap                                  ${ONBOARDING-NEXT-BUTTON}
+    Tap                                  ${ONBOARDING-NEXT-BUTTON}
+    Tap                                  ${ONBOARDING-NEXT-BUTTON}
+
+Skip First Time Open
+    Skip Tutorial
+    Allow Storage Permission
+    Tap                                  ${NAVIGATION-DEVICES-BUTTON}
+    Allow Location Permission
+    Dismiss Meterlink Support Notification
+    Dismiss Meterlink Support Notification  #existing bug that displays the Meterlink notification twice when the app is opened for the first time
+    Tap                                  ${NAVIGATION-LIBRARY-BUTTON}
