@@ -1,8 +1,8 @@
 *** Settings ***
 Documentation   This page conains sser defined keywords that are specific to the Library page only
-Resource        ./Resources/Locators.robot
-Resource        ./Resources/Config.robot
-Resource        ./Resources/UserDefinedKeywords.robot
+Resource        ../../Resources/Locators.robot
+Resource        ../../Resources/Config.robot
+Resource        ../../Resources/UserDefinedKeywords.robot
 Library         String
 
 

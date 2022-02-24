@@ -1,12 +1,11 @@
 *** Settings ***
-Suite Setup         Launch ToolsAndroid
-Suite Teardown      Close Application
-Resource            ../../Resources/Pages/StreamPage.robot
-Resource            ../../Resources/UserDefinedKeywords.robot
+Documentation       Create a new folder with a random 7 character string. Then delete it
+Resource            ../../Resources/Locators.robot
 
 *** Test Cases ***
 Take a snapshot from a streaming camera
     [Documentation]                       Take a snapshot from the first camera that's discovered in the Devices Page
+    [Tags]                                Sanity
     Navigate To Devices Tab
     ${StreamButton}=     Set Variable   xpath=(//android.widget.LinearLayout[@resource-id="${APP-ID}:id/ll_stream"])[1]
     Wait Until Page Contains Element      ${StreamButton}          30

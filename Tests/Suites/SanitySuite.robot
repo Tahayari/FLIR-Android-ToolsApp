@@ -3,10 +3,10 @@ Documentation       Contains Sanity Tests for the FLIR Tools Android app
 Library             DateTime
 Suite Setup         Launch ToolsAndroid
 Suite Teardown      Close Application
-Resource            Locators.robot
-Resource            ./Resources/UserDefinedKeywords.robot
-Resource            ./Resources/Pages/LibraryPage.robot
-Resource            ./Resources/Pages/DevicesPage.robot
+Resource            ../../Resources/Locators.robot
+Resource            ../../Resources/UserDefinedKeywords.robot
+Resource            ../../Resources/Pages/LibraryPage.robot
+Resource            ../../Resources/Pages/DevicesPage.robot
 
 *** Test Cases ***
 Rename a folder
@@ -28,16 +28,31 @@ Create a new folder
     ${FOLDERNAME-XPATH}=                Set Variable       //android.widget.TextView[@text="${folderName}"]
     Create A New Folder                 ${folderName}
 
-Delete a file
+Delete a folder
     [Tags]                              Sanity
     ${folderName}=                      Generate Random String      7
     ${FOLDERNAME-XPATH}=                Set Variable       //android.widget.TextView[@text="${folderName}"]
     Create A New Folder                 ${folderName}
     Delete a file or folder             ${folderName}
 
-Import all files from the first detected camera
+Import files from the first detected camera
+    [Tags]                              Sanity
     ${current-date}                                 Get Current Date    result_format=%Y-%m-%d %H-%M-%S.%f
     ${import-destination-foldername}                Set Variable        Import Folder ${current-date}
     Create a new folder                             ${import-destination-foldername}
     Navigate to Devices Tab
     Import files to a destination folder            ${import-destination-foldername}
+
+Take a snapshot from a streaming camera
+    [Documentation]                       Take a snapshot from the first camera that's discovered in the Devices Page
+    [Tags]                                Sanity
+    Navigate To Devices Tab
+    ${StreamButton}=     Set Variable   xpath=(//android.widget.LinearLayout[@resource-id="${APP-ID}:id/ll_stream"])[1]
+    Wait Until Page Contains Element      ${StreamButton}          30
+    Tap                                   ${StreamButton}
+    Page Should Contain Element           ${STREAM-SNAPSHOT-BUTTON}
+    Sleep                                 5s                   #wait a bit so that the camera starts to stream
+    Take A Snapshot
+    Tap                                   ${STREAM-BACK-BUTTON}
+    Page Should Contain Element           ${DEVICES-REFRESH-BUTTON}
+    Navigate To Library Tab

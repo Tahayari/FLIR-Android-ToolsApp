@@ -46,6 +46,7 @@ ${DEVICES-DEVICEDISCOVERED-LIST}        //android.widget.TextView[@resource-id="
 ${DEVICES-DESTFOLDER-TITLE}             //android.widget.TextView[@text="Select folder"]
 ${DEVICES-DESTFOLDER-IMPORT-BUTTON}     //android.widget.TextView[@resource-id="${APP-ID}:id/tv_proceed_button"]
 ${DEVICES-DESTFOLDER-FOLDER-LIST}       //android.widget.TextView[@resource-id="${APP-ID}:id/tv_file_name"]
+${DEVICES-DESTFOLDER-LOADING-WINDOW}    //android.widget.TextView[contains(@text,"Reading files from camera")]
 ${DEVICES-IMPORTSTARTED-TOAST}          //android.widget.TextView[@text="Import started"]
 ${DEVICES-IMPORTFINISHED-TOAST}         //android.widget.TextView[@text="Import finished"]
 
@@ -63,4 +64,13 @@ ${METERLINK-OK-BUTTON}                  //android.widget.LinearLayout[@resource-
 #-----------------------------------***    SETTINGS PAGE    ***-------------------------------------------------
 #---------------------------------------------------------------------------------------------------------------
 
-${SETTINGS-TITLE}                //android.widget.FrameLayout[@content-desc="Settings"]
+${SETTINGS-TITLE}                       //android.widget.FrameLayout[@content-desc="Settings"]
+
+
+#---------------------------------------------------------------------------------------------------------------
+#-----------------------------------***    STREAM PAGE    ***---------------------------------------------------
+#---------------------------------------------------------------------------------------------------------------
+${STREAM-SNAPSHOT-BUTTON}               id=${APP-ID}:id/rlRecordButtonPhoto
+${STREAM-LOADING-WINDOW}                //android.widget.TextView[@text="Taking snapshot"]
+${STREAM-IMPORTSUCCESS-TOAST}           //android.widget.TextView[contains(@text,"Image stored into Snapshots/")]
+${STREAM-BACK-BUTTON}                   id=${APP-ID}:id/fsiv_sync
