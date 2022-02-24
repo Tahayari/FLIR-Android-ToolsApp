@@ -1,6 +1,10 @@
 *** Settings ***
-Documentation       Create a new folder with a random 7 character string. Then delete it
+Documentation       Take a snapshot from the first detected camera
+Suite Setup         Launch ToolsAndroid
+Suite Teardown      Close Application
 Resource            ../../Resources/Locators.robot
+Resource            ../../Resources/UserDefinedKeywords.robot
+Resource            ../../Resources/Pages/StreamPage.robot
 
 *** Test Cases ***
 Take a snapshot from a streaming camera

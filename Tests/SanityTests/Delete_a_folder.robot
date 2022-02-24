@@ -1,6 +1,10 @@
 *** Settings ***
 Documentation       Create a new folder with a random 7 character string. Then delete it
+Suite Setup         Launch ToolsAndroid
+Suite Teardown      Close Application
 Resource            ../../Resources/Locators.robot
+Resource            ../../Resources/UserDefinedKeywords.robot
+Resource            ../../Resources/Pages/LibraryPage.robot
 
 *** Test Cases ***
 Delete a folder

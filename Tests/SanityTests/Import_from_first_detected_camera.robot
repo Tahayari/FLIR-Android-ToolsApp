@@ -1,8 +1,10 @@
 *** Settings ***
-Documentation
+Documentation       Import the first 3 files from the first detected camera
 Suite Setup         Launch ToolsAndroid
 Suite Teardown      Close Application
 Resource            ../../Resources/Pages/LibraryPage.robot
+Resource            ../../Resources/Pages/DevicesPage.robot
+Library             DateTime
 
 *** Test Cases ***
 Import files from the first detected camera

@@ -3,7 +3,6 @@ Documentation       Contains Sanity Tests for the FLIR Tools Android app
 Library             DateTime
 Suite Setup         Launch ToolsAndroid
 Suite Teardown      Close Application
-Resource            ../../Resources/Locators.robot
 Resource            ../../Resources/UserDefinedKeywords.robot
 Resource            ../../Resources/Pages/LibraryPage.robot
 Resource            ../../Resources/Pages/DevicesPage.robot

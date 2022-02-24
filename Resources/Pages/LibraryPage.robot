@@ -1,14 +1,10 @@
 *** Settings ***
-Documentation   This page conains sser defined keywords that are specific to the Library page only
-Resource        ../../Resources/Locators.robot
-Resource        ../../Resources/Config.robot
+Documentation   This page conains user defined keywords that are specific to the Library page only
 Resource        ../../Resources/UserDefinedKeywords.robot
 Library         String
 
 
 *** Keywords ***
-
-
 Scroll Down If Element Not Found
     [Arguments]                    ${ELEMENT-TO-BE-FOUND}
     Swipe Up                       ${LIBRARY-FILESANDFOLDERS-LIST}
@@ -67,4 +63,4 @@ Delete a file or folder
     Tap                                 ${LIBRARY-OPTIONS-DELETE}
     Wait Until Page Contains Element    ${DELETE-DIALOG-TITLE}
     Tap                                 ${DELETE-DIALOG-DELETE-BUTTON}
-    Page Should Contain Element         ${LIBRARY-DELETE-SUCCESS-TOAST}
+    Wait Until Page Contains Element    ${LIBRARY-DELETE-SUCCESS-TOAST}
