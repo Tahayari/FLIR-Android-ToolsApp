@@ -5,6 +5,9 @@ ${DEBUG-APP-ID}                         com.flir.tools.debug
 ${APP-ID}                               ${DEBUG-APP-ID}                     #SET which app to test. PROD or DEBUG build
 ${APP-ACTIVITY}                         com.flir.cloudlib.ui.FlirCloudActivity
 
+${MYFILES-APP-ID}                       com.sec.android.app.myfiles
+${MYFILES-APP-ACTIVITY}                 com.sec.android.app.myfiles.external.ui.MainActivity
+
 #***ANDROID CAPABILITIES***
 ${ANDROID-SERVER-PORT}                  4724
 

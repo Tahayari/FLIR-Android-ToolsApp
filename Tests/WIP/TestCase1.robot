@@ -1,19 +1,14 @@
 *** Settings ***
-Suite Setup         Launch ToolsAndroid
-Suite Teardown      Close Application
-Resource            ../../Resources/Pages/StreamPage.robot
+#Suite Setup         Launch ToolsAndroid
+#Suite Teardown      Close Application
 Resource            ../../Resources/UserDefinedKeywords.robot
+Resource            ../../Resources/OtherApps/MyFilesApp.robot
+Resource            ../../Resources/Locators.robot
 
 *** Test Cases ***
-Take a snapshot from a streaming camera
-    [Documentation]                       Take a snapshot from the first camera that's discovered in the Devices Page
-    Navigate To Devices Tab
-    ${StreamButton}=     Set Variable   xpath=(//android.widget.LinearLayout[@resource-id="${APP-ID}:id/ll_stream"])[1]
-    Wait Until Page Contains Element      ${StreamButton}          30
-    Tap                                   ${StreamButton}
-    Page Should Contain Element           ${STREAM-SNAPSHOT-BUTTON}
-    Sleep                                 5s                   #wait a bit so that the camera starts to stream
-    Take A Snapshot
-    Tap                                   ${STREAM-BACK-BUTTON}
-    Page Should Contain Element           ${DEVICES-REFRESH-BUTTON}
-    Navigate To Library Tab
+Open MyFiles app
+    Launch MyFilesApp
+    Navigate to the Test Folder
+    Send Test Images To Tools App
+    Wait Until Page Contains Element      ${LIBRARY-MYFILES-TITLE}
+    #verify if files were sent in the correct folder?

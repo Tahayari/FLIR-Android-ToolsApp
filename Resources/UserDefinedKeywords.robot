@@ -10,10 +10,15 @@ ${ANDROID-STORAGE-ALLOW-BUTTON}         id=com.android.permissioncontroller:id/p
 ${ANDROID-STORAGE-DENY-BUTTON}          id=com.android.permissioncontroller:id/permission_deny_button
 ${ANDROID-LOCATION-ALLOW-BUTTON}        id=com.android.permissioncontroller:id/permission_allow_foreground_only_button
 ${ANDROID-LOCATION-DENY-BUTTON}         id=com.android.permissioncontroller:id/permission_deny_button
+${ANDROID-SHARE-TOOLSAPP-PROD}          //android.widget.TextView[@text="FLIR Tools"]
+${ANDROID-SHARE-TOOLSAPP-DEBUG}         //android.widget.TextView[@text="FLIR Tools Debug"]
 
 *** Keywords ***
 Launch ToolsAndroid
     open application    http://localhost:${ANDROID-SERVER-PORT}/wd/hub    platformName=Android   noReset=true    autoGrantPermissions=false    appPackage=${APP-ID}    appActivity=${APP-ACTIVITY}   automationName=UIAutomator2
+
+Launch MyFilesApp
+    open application    http://localhost:${ANDROID-SERVER-PORT}/wd/hub    platformName=Android   noReset=true    autoGrantPermissions=true    appPackage=${MYFILES-APP-ID}    appActivity=${MYFILES-APP-ACTIVITY}   automationName=UIAutomator2
 
 Allow Storage Permission
     Wait Until Page Contains Element     ${ANDROID-STORAGE-ALLOW-BUTTON}
