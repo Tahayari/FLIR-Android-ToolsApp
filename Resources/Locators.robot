@@ -17,6 +17,7 @@ ${LIBRARY-RENAME-TITLE}                 //android.widget.TextView[@text="Rename"
 ${LIBRARY-FILEFOLDERNAME-FIELD}         id=${APP-ID}:id/et_file_folder_name
 ${LIBRARY-CREATEFOLDER-BUTTON}          id=${APP-ID}:id/tv_proceed_button
 ${LIBRARY-FILESANDFOLDERS-LIST}         id=${APP-ID}:id/rv_items
+${LIBRARY-SHAREDIMPORT-FOLDER}          //android.widget.TextView[@text="shared import"]
 
 #***FILE/FOLDER OPTIONS CONTEXT MENU***
 ${LIBRARY-OPTIONS-DETAILS}              id=${APP-ID}:id/action_details
@@ -29,6 +30,16 @@ ${LIBRARY-OPTIONS-CLOSE}                id=${APP-ID}:id/action_close
 # ***DIALOG WINDOWS***
 ${DELETE-DIALOG-TITLE}                  //android.widget.TextView[@text="Delete"]
 ${DELETE-DIALOG-DELETE-BUTTON}          //android.widget.Button[@text="Delete"]
+
+# ***SORTING TOOLBAR***
+${LIBRARY-SORT-TOOLBAR}                 id=${APP-ID}:id/tv_toolbar_sort
+${LIBRARY-SORTBY-NAME}                  //android.widget.TextView[@text="Name"]
+${LIBRARY-SORTBY-MODIFIED}              //android.widget.TextView[@text="Modified Date"]
+${LIBRARY-SORTBY-SIZE}                  //android.widget.TextView[@text="Size"]
+${LIBRARY-SORTBY-ASC}                   //android.widget.TextView[@text="Ascending"]
+${LIBRARY-SORTBY-DESC}                  //android.widget.TextView[@text="Descending"]
+${LIBRARY-SORTBY-NAME-TICK}             //${APP-ID}:id/iv_sort_name_checkmark
+${LIBRARY-SORTBY-MODIFIED-TICK}     //${APP-ID}:id/iv_sort_modified_date_checkmark
 
 #***TOAST MESSAGES***
 ${LIBRARY-RENAME-SUCCESS-TOAST}         //android.widget.TextView[@text="Folder renamed"]

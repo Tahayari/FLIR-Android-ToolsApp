@@ -64,3 +64,38 @@ Delete a file or folder
     Wait Until Page Contains Element    ${DELETE-DIALOG-TITLE}
     Tap                                 ${DELETE-DIALOG-DELETE-BUTTON}
     Wait Until Page Contains Element    ${LIBRARY-DELETE-SUCCESS-TOAST}
+
+
+SortBy Name
+    Tap                                 ${LIBRARY-SORT-TOOLBAR}
+    ${status}     Run Keyword And Return Status   Element Should Be Visible    ${LIBRARY-SORTBY-NAME-TICK}
+      
+    IF    '${status}' == 'False'
+        Wait Until Page Contains Element    ${LIBRARY-SORTBY-NAME}
+        Tap                                 ${LIBRARY-SORTBY-NAME} 
+    END
+
+SortBy Modified Date
+    Tap                                 ${LIBRARY-SORT-TOOLBAR}
+    ${status}     Run Keyword And Return Status   Element Should Be Visible    ${LIBRARY-SORTBY-MODIFIED-TICK}
+      
+    IF    '${status}' == 'False'
+        Wait Until Page Contains Element    ${LIBRARY-SORTBY-MODIFIED}
+        Tap                                 ${LIBRARY-SORTBY-MODIFIED} 
+    END
+
+OrderBy Ascending
+    Tap                                 ${LIBRARY-SORT-TOOLBAR}
+    ${status}    Run Keyword And Return Status    Element Should Be Visible    ${LIBRARY-SORTBY-ASC}
+    IF    ${status} == 'False'
+        Wait Until Page Contains Element    ${LIBRARY-SORTBY-ASC}
+        Tap                                 ${LIBRARY-SORTBY-ASC}
+    END
+
+OrderBy Descending
+    Tap                                 ${LIBRARY-SORT-TOOLBAR}
+    ${status}    Run Keyword And Return Status    Element Should Be Visible    ${LIBRARY-SORTBY-DESC}
+    IF    ${status} == 'False'
+        Wait Until Page Contains Element    ${LIBRARY-SORTBY-DESC}
+        Tap                                 ${LIBRARY-SORTBY-DESC}
+    END
