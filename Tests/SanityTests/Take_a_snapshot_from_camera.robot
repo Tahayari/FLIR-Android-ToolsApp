@@ -11,7 +11,7 @@ Take a snapshot from a streaming camera
     [Documentation]                       Take a snapshot from the first camera that's discovered in the Devices Page
     [Tags]                                Sanity
     Navigate To Devices Tab
-    ${StreamButton}=     Set Variable   xpath=(//android.widget.LinearLayout[@resource-id="${APP-ID}:id/ll_stream"])[1]
+    ${StreamButton}=     Set Variable     xpath=(//android.widget.LinearLayout[@resource-id="${APP-ID}:id/ll_stream"])[1]
     Wait Until Page Contains Element      ${StreamButton}          30
     Tap                                   ${StreamButton}
     Page Should Contain Element           ${STREAM-SNAPSHOT-BUTTON}

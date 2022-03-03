@@ -10,7 +10,7 @@ Library          AppiumLibrary
 #---------------------------------------------------------------------------------------------------------------
 
 ${LIBRARY-MYFILES-TITLE}                //android.widget.FrameLayout[@content-desc="Library"]
-${LIBRARY-ADDFOLDER-BUTTON}             id=${APP-ID}:id/iv_toolbar_add
+${LIBRARY-ADDFOLDER-BUTTON}             id=${APP-ID}:id/iv_toolbar_add       #same id as the More options button when files are selected
 ${LIBRARY-SAVE-BUTTON}                  //android.widget.TextView[@text="Save"]
 ${LIBRARY-NEWFOLDER-TITLE}              //android.widget.TextView[@text="New folder"]
 ${LIBRARY-RENAME-TITLE}                 //android.widget.TextView[@text="Rename"]
@@ -19,13 +19,19 @@ ${LIBRARY-CREATEFOLDER-BUTTON}          id=${APP-ID}:id/tv_proceed_button
 ${LIBRARY-FILESANDFOLDERS-LIST}         id=${APP-ID}:id/rv_items
 ${LIBRARY-SHAREDIMPORT-FOLDER}          //android.widget.TextView[@text="shared import"]
 
+${LIBRARY-INFOTOOLBAR-SELECTEDFILES}    id=${APP-ID}:id/tv_selected_count
+${LIBRARY-INFOTOOLBAR-DELETE-BUTTON}    id=${APP-ID}:id/iv_delete_select
+${LIBRARY-INFOTOOLBAR-CLOSE-BUTTON}     id=${APP-ID}:id/iv_close_select
+
+
 #***FILE/FOLDER OPTIONS CONTEXT MENU***
 ${LIBRARY-OPTIONS-DETAILS}              id=${APP-ID}:id/action_details
 ${LIBRARY-OPTIONS-COPY}                 id=${APP-ID}:id/action_copy
 ${LIBRARY-OPTIONS-MOVE}                 id=${APP-ID}:id/action_move
 ${LIBRARY-OPTIONS-RENAME}               id=${APP-ID}:id/action_rename
 ${LIBRARY-OPTIONS-DELETE}               id=${APP-ID}:id/action_delete
-${LIBRARY-OPTIONS-CLOSE}                id=${APP-ID}:id/action_close
+${LIBRARY-OPTIONS-CLOSE}                id=${APP-ID}:id/action_close        #generic close button. This id is also in the SortBy menu. Inform DEVs to make a unique one
+${LIBRARY-OPTIONS-SELECT-ALL}           //android.widget.TextView[@text="Select all"]
 
 # ***DIALOG WINDOWS***
 ${DELETE-DIALOG-TITLE}                  //android.widget.TextView[@text="Delete"]
@@ -38,8 +44,9 @@ ${LIBRARY-SORTBY-MODIFIED}              //android.widget.TextView[@text="Modifie
 ${LIBRARY-SORTBY-SIZE}                  //android.widget.TextView[@text="Size"]
 ${LIBRARY-SORTBY-ASC}                   //android.widget.TextView[@text="Ascending"]
 ${LIBRARY-SORTBY-DESC}                  //android.widget.TextView[@text="Descending"]
-${LIBRARY-SORTBY-NAME-TICK}             //${APP-ID}:id/iv_sort_name_checkmark
-${LIBRARY-SORTBY-MODIFIED-TICK}     //${APP-ID}:id/iv_sort_modified_date_checkmark
+${LIBRARY-SORTBY-NAME-TICK}             id=${APP-ID}:id/iv_sort_name_checkmark
+${LIBRARY-SORTBY-MODIFIED-TICK}         id=${APP-ID}:id/iv_sort_modified_date_checkmark
+${LIBRARY-SORTBTY-} 
 
 #***TOAST MESSAGES***
 ${LIBRARY-RENAME-SUCCESS-TOAST}         //android.widget.TextView[@text="Folder renamed"]
@@ -62,7 +69,7 @@ ${DEVICES-IMPORTSTARTED-TOAST}          //android.widget.TextView[@text="Import 
 ${DEVICES-IMPORTFINISHED-TOAST}         //android.widget.TextView[@text="Import finished"]
 
 #***SELECT FILES FROM CAMERA WINDOW***
-${DEVICES-CAMERADIR-WINDOW}             //androidx.recyclerview.widget.RecyclerView[@resource-id="${APP-ID}:id/com.flir.tools:id/rv_camera_files_to_select"]
+${DEVICES-CAMERADIR-WINDOW}             //androidx.recyclerview.widget.RecyclerView[@resource-id="${APP-ID}:id/${APP-ID}:id/rv_camera_files_to_select"]
 ${DEVICES-CAMERADIR-NEXT-BUTTON}        id=${APP-ID}:id/iv_next
 
 # *** METERLINK SUPPORT WINDOW***

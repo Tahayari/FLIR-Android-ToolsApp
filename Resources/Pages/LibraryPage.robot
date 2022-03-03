@@ -67,35 +67,64 @@ Delete a file or folder
 
 
 SortBy Name
+    [Documentation]                     Sort files/folders in the Library by Name
     Tap                                 ${LIBRARY-SORT-TOOLBAR}
+    Wait Until Page Contains Element    ${LIBRARY-OPTIONS-CLOSE}
     ${status}     Run Keyword And Return Status   Element Should Be Visible    ${LIBRARY-SORTBY-NAME-TICK}
-      
     IF    '${status}' == 'False'
         Wait Until Page Contains Element    ${LIBRARY-SORTBY-NAME}
-        Tap                                 ${LIBRARY-SORTBY-NAME} 
+        Tap                                 ${LIBRARY-SORTBY-NAME}
+    ELSE 
+        Tap                                 ${LIBRARY-OPTIONS-CLOSE}  #same id for the Close button
     END
+    Wait Until Page Contains Element    ${LIBRARY-SORT-TOOLBAR}
 
 SortBy Modified Date
+    [Documentation]                     Sort files/folders in the Library by Modified Date
     Tap                                 ${LIBRARY-SORT-TOOLBAR}
+    Wait Until Page Contains Element    ${LIBRARY-OPTIONS-CLOSE}
     ${status}     Run Keyword And Return Status   Element Should Be Visible    ${LIBRARY-SORTBY-MODIFIED-TICK}
-      
     IF    '${status}' == 'False'
         Wait Until Page Contains Element    ${LIBRARY-SORTBY-MODIFIED}
-        Tap                                 ${LIBRARY-SORTBY-MODIFIED} 
+        Tap                                 ${LIBRARY-SORTBY-MODIFIED}
+    ELSE 
+        Tap                                 ${LIBRARY-OPTIONS-CLOSE}  #same id for the Close button 
     END
+    Wait Until Page Contains Element    ${LIBRARY-SORT-TOOLBAR}
 
 OrderBy Ascending
+    [Documentation]                     Order files/folders in the Library by ASCENDING Order
     Tap                                 ${LIBRARY-SORT-TOOLBAR}
+    Wait Until Page Contains Element    ${LIBRARY-OPTIONS-CLOSE}
     ${status}    Run Keyword And Return Status    Element Should Be Visible    ${LIBRARY-SORTBY-ASC}
-    IF    ${status} == 'False'
-        Wait Until Page Contains Element    ${LIBRARY-SORTBY-ASC}
-        Tap                                 ${LIBRARY-SORTBY-ASC}
-    END
-
-OrderBy Descending
-    Tap                                 ${LIBRARY-SORT-TOOLBAR}
-    ${status}    Run Keyword And Return Status    Element Should Be Visible    ${LIBRARY-SORTBY-DESC}
-    IF    ${status} == 'False'
+    IF    '${status}' == 'False'
         Wait Until Page Contains Element    ${LIBRARY-SORTBY-DESC}
         Tap                                 ${LIBRARY-SORTBY-DESC}
+    ELSE 
+        Tap                                 ${LIBRARY-OPTIONS-CLOSE}  #same id for the Close button
     END
+    Wait Until Page Contains Element    ${LIBRARY-SORT-TOOLBAR}
+
+OrderBy Descending
+    [Documentation]                     Order files/folders in the Library by DESCENDING Order
+    Tap                                 ${LIBRARY-SORT-TOOLBAR}
+    Wait Until Page Contains Element    ${LIBRARY-OPTIONS-CLOSE}
+    ${status}    Run Keyword And Return Status    Element Should Be Visible    ${LIBRARY-SORTBY-DESC}
+    # Log To Console    Orderby DESC locator status is... ${status}
+    IF    '${status}' == 'False'
+        Wait Until Page Contains Element    ${LIBRARY-SORTBY-ASC}
+        Tap                                 ${LIBRARY-SORTBY-ASC}
+    ELSE 
+        Tap                                 ${LIBRARY-OPTIONS-CLOSE}  #same id for the Close button
+    END
+    Wait Until Page Contains Element    ${LIBRARY-SORT-TOOLBAR}
+Select All
+    [Documentation]             Selects all of the files&folders in the current view and returns the total number of files selected
+    ${firstElement}        Set Variable     xpath=(//androidx.recyclerview.widget.RecyclerView[@resource-id="${APP-ID}:id/rv_items"]/android.widget.FrameLayout)[1]
+    Long Press                  ${firstElement}
+    Tap                         ${LIBRARY-ADDFOLDER-BUTTON}
+    Wait Until Page Contains Element    ${LIBRARY-OPTIONS-SELECT-ALL}
+    Tap                         ${LIBRARY-OPTIONS-SELECT-ALL}
+    ${noOfFilesSelected}        Get Text    id=${APP-ID}:id/tv_selected_count
+    ${noOfFilesSelected}        Remove String  ${noOfFilesSelected}     Items
+    [Return]                    ${noOfFilesSelected}

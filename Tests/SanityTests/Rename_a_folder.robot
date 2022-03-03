@@ -7,6 +7,7 @@ Resource            ../../Resources/Locators.robot
 
 *** Test Cases ***
 Rename a folder
+    [Documentation]                     Create a new folder with a random 7 character string. Rename it to some other random string.
     [Tags]                              Sanity
     ${FOLDERNAME}=                      Generate Random String      7
     ${NEW-FOLDERNAME}=                  Generate Random String      7

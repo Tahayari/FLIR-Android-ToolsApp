@@ -6,4 +6,3 @@ Resource            ../../Resources/Pages/LibraryPage.robot
 *** Test Cases ***
 TestCase2
     Launch ToolsAndroid
-    

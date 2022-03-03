@@ -8,7 +8,8 @@ Library             DateTime
 
 *** Test Cases ***
 Import files from the first detected camera
-    [Tags]                              Sanity
+    [Documentation]                             Import the first 3 files from the first detected camera
+    [Tags]                                      Sanity
     ${current-date}                                 Get Current Date    result_format=%Y-%m-%d %H-%M-%S.%f
     ${import-destination-foldername}                Set Variable        Import Folder ${current-date}
     Create a new folder                             ${import-destination-foldername}
