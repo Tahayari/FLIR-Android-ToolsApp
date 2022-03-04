@@ -4,12 +4,13 @@ Resource        ../../Resources/UserDefinedKeywords.robot
 
 *** Keywords ***
 Dismiss Meterlink Support Notification
+    [Documentation]        Dimisses the Meterlinks not supported Notification when the user first navigates to the Devices page(provided the app is freshly installed)
     Wait Until Page Contains Element     ${METERLINK-MESSAGE}
     Tap                                  ${METERLINK-DONTDISPLAY-CHECKBOX}
     Tap                                  ${METERLINK-OK-BUTTON}
 
 Import files to a destination folder
-    [Documentation]                     Import files from the first camera that's detected
+    [Documentation]                     Import files from the first camera that's detected in the Devices page
     [Arguments]                         ${DEST-FOLDER-NAME}
     ${DEVICES-IMPORT-BUTTON}=           Set Variable             xpath=(//android.widget.LinearLayout[@resource-id="${APP-ID}:id/ll_import"])[1]
     ${FIRST-IMAGE}=                     Set Variable             xpath=(//androidx.recyclerview.widget.RecyclerView[@resource-id="${APP-ID}:id/rv_camera_files_to_select"]/android.widget.FrameLayout)[1]
