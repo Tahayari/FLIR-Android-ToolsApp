@@ -15,6 +15,7 @@ ${MYFILES-FOLDERVIEW-SELECT-COUNT}                       id=com.sec.android.app.
 
 *** Keywords ***
 Navigate to the Test Folder
+    [Documentation]                     Navigates to the folder where Test images are located
     Tap                                 ${MYFILES-INTERNALSTORAGE-BUTTON}
     Wait Until Page Contains Element    ${MYFILES-FOLDERVIEW-FLIR-FOLDER}
     Tap                                 ${MYFILES-FOLDERVIEW-FLIR-FOLDER}

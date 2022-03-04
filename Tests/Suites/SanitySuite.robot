@@ -6,6 +6,8 @@ Suite Teardown      Close Application
 Resource            ../../Resources/UserDefinedKeywords.robot
 Resource            ../../Resources/Pages/LibraryPage.robot
 Resource            ../../Resources/Pages/DevicesPage.robot
+Resource            ../../Resources/Pages/StreamPage.robot
+
 
 *** Test Cases ***
 Rename a folder

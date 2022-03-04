@@ -42,6 +42,7 @@ Swipe Down
     Sleep  1
 
 Create a new folder
+    [Documentation]                    Create a new folder with the name sent in the argument
     [Arguments]     ${FOLDERNAME}
     ${FOLDERNAME-XPATH}=                        Set Variable       //android.widget.TextView[@text="${FOLDERNAME}"]
     Tap                                         ${LIBRARY-ADDFOLDER-BUTTON}
@@ -52,12 +53,14 @@ Create a new folder
     Scroll Up And Down In Search For Element    ${FOLDERNAME-XPATH}
     
 Open Options Menu For File/Folder
+    [Documentation]                     Opens the More options menu for the file or folder name sent as an argument
     [Arguments]     ${FILENAME}
     ${OPTIONS-BUTTON-XPATH}=            Set Variable    //android.widget.TextView[@text="${FILENAME}"]//parent::android.view.ViewGroup//android.widget.FrameLayout[@resource-id="${APP-ID}:id/fl_option_menu"]
     Tap                                 ${OPTIONS-BUTTON-XPATH}
     Wait Until Page Contains Element    ${LIBRARY-OPTIONS-CLOSE}    7
 
 Delete a file or folder
+    [Documentation]                     Deletes the file or folder whose name was sent as an argument
     [Arguments]                         ${FileName}
     Open Options Menu For File/Folder   ${FileName}
     Tap                                 ${LIBRARY-OPTIONS-DELETE}

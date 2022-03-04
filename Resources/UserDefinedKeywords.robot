@@ -2,6 +2,8 @@
 Library         String
 Resource        Config.robot
 Resource        Locators.robot
+Resource        ../Resources/Pages/LibraryPage.robot
+Resource        ../Resources/Pages/DevicesPage.robot
 
 *** Variables ***
 
