@@ -26,6 +26,7 @@ ${LIBRARY-INFOTOOLBAR-CLOSE-BUTTON}     id=${APP-ID}:id/iv_close_select
 
 #***FILE/FOLDER OPTIONS CONTEXT MENU***
 ${LIBRARY-OPTIONS-DETAILS}              id=${APP-ID}:id/action_details
+${LIBRARY-OPTIONS-SEND}                 id=${APP-ID}:id/action_send
 ${LIBRARY-OPTIONS-COPY}                 id=${APP-ID}:id/action_copy
 ${LIBRARY-OPTIONS-MOVE}                 id=${APP-ID}:id/action_move
 ${LIBRARY-OPTIONS-RENAME}               id=${APP-ID}:id/action_rename
@@ -46,7 +47,6 @@ ${LIBRARY-SORTBY-ASC}                   //android.widget.TextView[@text="Ascendi
 ${LIBRARY-SORTBY-DESC}                  //android.widget.TextView[@text="Descending"]
 ${LIBRARY-SORTBY-NAME-TICK}             id=${APP-ID}:id/iv_sort_name_checkmark
 ${LIBRARY-SORTBY-MODIFIED-TICK}         id=${APP-ID}:id/iv_sort_modified_date_checkmark
-${LIBRARY-SORTBTY-} 
 
 #***TOAST MESSAGES***
 ${LIBRARY-RENAME-SUCCESS-TOAST}         //android.widget.TextView[@text="Folder renamed"]

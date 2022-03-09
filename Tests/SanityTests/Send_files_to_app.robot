@@ -9,6 +9,7 @@ Resource            ../../Resources/Pages/LibraryPage.robot
 
 *** Test Cases ***
 Send files from local storage to Tools app
+    [Documentation]       Send files from local storage and send them to the app. Files location should be in /FLIR/Test Images
     [Tags]                                      Sanity
     Launch MyFilesApp
     Navigate to the Test Folder
@@ -27,4 +28,4 @@ Send files from local storage to Tools app
     Log To Console    ${noOfFilesSelected}
     Should Be Equal   ${noOfFilesSentFromMyFiles}    ${noOfFilesSelected}    msg=Selected files were imported successfully into the app
     Tap               ${LIBRARY-INFOTOOLBAR-CLOSE-BUTTON}
-    #return to rool folder?
+    #return to root folder?
