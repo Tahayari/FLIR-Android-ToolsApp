@@ -11,6 +11,9 @@ Resource            ../../Resources/Pages/LibraryPage.robot
 Send files from local storage to Tools app
     [Documentation]       Send files from local storage and send them to the app. Files location should be in /FLIR/Test Images
     [Tags]                                      Sanity
+    ${firstFolderXpath}    Set Variable    xpath=(//androidx.recyclerview.widget.RecyclerView[@resource-id="${APP-ID}:id/rv_items"]/android.widget.FrameLayout)[1]
+    ${firstFileXpath}      Set Variable    xpath=(//android.widget.TextView[@resource-id="${APP-ID}:id/tv_file_name"])[1]
+
     Launch MyFilesApp
     Navigate to the Test Folder
     ${noOfFilesSentFromMyFiles}                 Send Test Images To Tools App
@@ -20,12 +23,12 @@ Send files from local storage to Tools app
     SortBy Name
     OrderBy Descending
     #Tap on the first folder
-    Tap        xpath=(//androidx.recyclerview.widget.RecyclerView[@resource-id="${APP-ID}:id/rv_items"]/android.widget.FrameLayout)[1]
+    Wait Until Page Contains Element    ${firstFolderXpath}
+    Tap                                 ${firstFolderXpath}
+    Wait Until Page Contains Element    ${firstFileXpath}
     #Select All
     ${noOfFilesSelected}        Select All
     #compare the number of images    
-    Log To Console    ${noOfFilesSentFromMyFiles}
-    Log To Console    ${noOfFilesSelected}
     Should Be Equal   ${noOfFilesSentFromMyFiles}    ${noOfFilesSelected}    msg=Selected files were imported successfully into the app
     Tap               ${LIBRARY-INFOTOOLBAR-CLOSE-BUTTON}
     #return to root folder?

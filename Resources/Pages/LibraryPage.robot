@@ -50,7 +50,7 @@ Create a new folder
     Input Text                                  ${LIBRARY-FILEFOLDERNAME-FIELD}     ${FOLDERNAME}
     Tap                                         ${LIBRARY-CREATEFOLDER-BUTTON}
     Wait Until Page Contains Element            ${NAVIGATION-LIBRARY-BUTTON}
-    Scroll Up And Down In Search For Element    ${FOLDERNAME-XPATH}
+    Scroll Up And Down In Search For Element    ${FOLDERNAME-XPATH}        #should have a success toast message
     
 Open Options Menu For File/Folder
     [Documentation]                     Opens the More options menu for the file or folder name sent as an argument
