@@ -15,7 +15,7 @@ ${LIBRARY-SAVE-BUTTON}                  //android.widget.TextView[@text="Save"]
 ${LIBRARY-NEWFOLDER-TITLE}              //android.widget.TextView[@text="New folder"]
 ${LIBRARY-RENAME-TITLE}                 //android.widget.TextView[@text="Rename"]
 ${LIBRARY-FILEFOLDERNAME-FIELD}         id=${APP-ID}:id/et_file_folder_name
-${LIBRARY-CREATEFOLDER-BUTTON}          id=${APP-ID}:id/tv_proceed_button
+${LIBRARY-CREATEFOLDER-BUTTON}          id=${APP-ID}:id/tv_proceed_button    #same id as Move/Copy/Import button in the Move/Copy/Import select destination folder
 ${LIBRARY-FILESANDFOLDERS-LIST}         id=${APP-ID}:id/rv_items
 ${LIBRARY-SHAREDIMPORT-FOLDER}          //android.widget.TextView[@text="shared import"]
 
@@ -51,6 +51,8 @@ ${LIBRARY-SORTBY-MODIFIED-TICK}         id=${APP-ID}:id/iv_sort_modified_date_ch
 #***TOAST MESSAGES***
 ${LIBRARY-RENAME-SUCCESS-TOAST}         //android.widget.TextView[@text="Folder renamed"]
 ${LIBRARY-DELETE-SUCCESS-TOAST}         //*[contains(@text,"successfully deleted")]
+${LIBRARY-MOVE-SUCCESS-TOAST}           //android.widget.TextView[@text="Entity successfully moved."]
+${LIBRARY-CREATEFOLDER-FAIL-TOAST}      //android.widget.TextView[contains(@text,"already exist")] 
 
 #*** ONBOARDING PAGE***
 ${ONBOARDING-NEXT-BUTTON}               id=${APP-ID}:id/tvNext

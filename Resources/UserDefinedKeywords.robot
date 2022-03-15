@@ -48,13 +48,18 @@ Navigate to Settings Tab
 
 Scroll Up And Down In Search For Element
     [Arguments]        ${FOLDERNAME-XPATH}
-    ${result}=    Run Keyword And Return Status    Wait Until Page Contains Element    ${FOLDERNAME-XPATH}
-    IF    "${result}" == "False"
-        ${result}=    Run Keyword And Return Status    Wait Until Keyword Succeeds         5x    200ms    Scroll Down If Element Not Found    ${FOLDERNAME-XPATH}
+    #temporarily disable Capture screenshot on failure functionality
+    ${previousKeyword}=    Register Keyword To Run On Failure      Nothing
+
+    ${elementIsFound}=    Run Keyword And Return Status    Wait Until Page Contains Element    ${FOLDERNAME-XPATH}
+    IF    "${elementIsFound}" == "False"
+        ${elementIsFound}=    Run Keyword And Return Status    Wait Until Keyword Succeeds         5x    50ms    Scroll Down If Element Not Found    ${FOLDERNAME-XPATH}
     END
-    IF    "${result}" == "False"
-        Wait Until Keyword Succeeds         5x    200ms    Scroll Up If Element Not Found    ${FOLDERNAME-XPATH}
+    IF    "${elementIsFound}" == "False"
+        Run Keyword And Ignore Error    Wait Until Keyword Succeeds         5x    50ms    Scroll Up If Element Not Found    ${FOLDERNAME-XPATH}
     END
+    Register Keyword To Run On Failure    ${previousKeyword}
+    Wait Until Page Contains Element    ${FOLDERNAME-XPATH}
 
 Skip Tutorial
     Tap                                  ${ONBOARDING-NEXT-BUTTON}

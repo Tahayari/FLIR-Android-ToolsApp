@@ -24,18 +24,19 @@ Swipe Up
     ${START_X}=         Evaluate      ${ELEMENT_LOCATION['x']} + (${ELEMENT_SIZE['width']} * 0.5)
     ${START_Y}=         Evaluate      ${ELEMENT_LOCATION['y']} + (${ELEMENT_SIZE['height']} * 0.7)
     ${END_X}=           Evaluate      ${ELEMENT_LOCATION['x']} + (${ELEMENT_SIZE['width']} * 0.5)
-    ${END_Y}=           Evaluate      ${ELEMENT_LOCATION['y']} + (${ELEMENT_SIZE['height']} * 0.3)
+    ${END_Y}=           Evaluate      ${ELEMENT_LOCATION['y']} + (${ELEMENT_SIZE['height']} * 0.5) #default 0.3
     Swipe               ${START_X}    ${START_Y}  ${END_X}  ${END_Y}  200
     Sleep  1
 
 Swipe Down
+    #LIST-ID is the id of the elements in the Library
     [Arguments]    ${LIST-ID}
     ${LIST-ID-SUBSTRING}    Get Substring    ${LIST-ID}    3    #remove the "id=" prefix from the element
     ${LIST-ID}=             Set Variable    ${LIST-ID-SUBSTRING}
     ${ELEMENT_SIZE}=        Get Element Size        id=${LIST-ID}
     ${ELEMENT_LOCATION}=    Get Element Location    id=${LIST-ID}
     ${START_X}=         Evaluate      ${ELEMENT_LOCATION['x']} + (${ELEMENT_SIZE['width']} * 0.5)
-    ${START_Y}=         Evaluate      ${ELEMENT_LOCATION['y']} + (${ELEMENT_SIZE['height']} * 0.3)
+    ${START_Y}=         Evaluate      ${ELEMENT_LOCATION['y']} + (${ELEMENT_SIZE['height']} * 0.5) #default 0.3
     ${END_X}=           Evaluate      ${ELEMENT_LOCATION['x']} + (${ELEMENT_SIZE['width']} * 0.5)
     ${END_Y}=           Evaluate      ${ELEMENT_LOCATION['y']} + (${ELEMENT_SIZE['height']} * 0.7)
     Swipe               ${START_X}    ${START_Y}  ${END_X}  ${END_Y}  200
@@ -50,7 +51,7 @@ Create a new folder
     Input Text                                  ${LIBRARY-FILEFOLDERNAME-FIELD}     ${FOLDERNAME}
     Tap                                         ${LIBRARY-CREATEFOLDER-BUTTON}
     Wait Until Page Contains Element            ${NAVIGATION-LIBRARY-BUTTON}
-    Scroll Up And Down In Search For Element    ${FOLDERNAME-XPATH}
+    Scroll Up And Down In Search For Element    ${FOLDERNAME-XPATH}        #should have a success toast message
     
 Open Options Menu For File/Folder
     [Documentation]                     Opens the More options menu for the file or folder name sent as an argument
@@ -71,6 +72,8 @@ Delete a file or folder
 
 SortBy Name
     [Documentation]                     Sort files/folders in the Library by Name
+    Swipe Down        ${LIBRARY-FILESANDFOLDERS-LIST}    #workaround for bug TMM-3124
+    Wait Until Page Contains Element    ${LIBRARY-SORT-TOOLBAR}
     Tap                                 ${LIBRARY-SORT-TOOLBAR}
     Wait Until Page Contains Element    ${LIBRARY-OPTIONS-CLOSE}
     ${status}     Run Keyword And Return Status   Element Should Be Visible    ${LIBRARY-SORTBY-NAME-TICK}
@@ -84,6 +87,8 @@ SortBy Name
 
 SortBy Modified Date
     [Documentation]                     Sort files/folders in the Library by Modified Date
+    Swipe Down        ${LIBRARY-FILESANDFOLDERS-LIST}    #workaround for bug TMM-3124
+    Wait Until Page Contains Element    ${LIBRARY-SORT-TOOLBAR}
     Tap                                 ${LIBRARY-SORT-TOOLBAR}
     Wait Until Page Contains Element    ${LIBRARY-OPTIONS-CLOSE}
     ${status}     Run Keyword And Return Status   Element Should Be Visible    ${LIBRARY-SORTBY-MODIFIED-TICK}
@@ -97,6 +102,8 @@ SortBy Modified Date
 
 OrderBy Ascending
     [Documentation]                     Order files/folders in the Library by ASCENDING Order
+    Swipe Down        ${LIBRARY-FILESANDFOLDERS-LIST}    #workaround for bug TMM-3124
+    Wait Until Page Contains Element    ${LIBRARY-SORT-TOOLBAR}
     Tap                                 ${LIBRARY-SORT-TOOLBAR}
     Wait Until Page Contains Element    ${LIBRARY-OPTIONS-CLOSE}
     ${status}    Run Keyword And Return Status    Element Should Be Visible    ${LIBRARY-SORTBY-ASC}
@@ -110,6 +117,8 @@ OrderBy Ascending
 
 OrderBy Descending
     [Documentation]                     Order files/folders in the Library by DESCENDING Order
+    Swipe Down        ${LIBRARY-FILESANDFOLDERS-LIST}    #workaround for bug TMM-3124
+    Wait Until Page Contains Element    ${LIBRARY-SORT-TOOLBAR}
     Tap                                 ${LIBRARY-SORT-TOOLBAR}
     Wait Until Page Contains Element    ${LIBRARY-OPTIONS-CLOSE}
     ${status}    Run Keyword And Return Status    Element Should Be Visible    ${LIBRARY-SORTBY-DESC}
