@@ -19,6 +19,7 @@ Import files to a destination folder
     Wait Until Page Contains Element    ${DEVICES-IMPORT-BUTTON}    10
     Click Element                       ${DEVICES-IMPORT-BUTTON}
     Wait Until Page Does Not Contain Element  ${DEVICES-DESTFOLDER-LOADING-WINDOW}  10
+    Wait Until Page Contains Element    ${FIRST-IMAGE}    10
     Tap                                 ${FIRST-IMAGE}
     Tap                                 ${SECOND-IMAGE}
     Tap                                 ${THIRD-IMAGE}

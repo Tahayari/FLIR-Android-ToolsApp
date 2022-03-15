@@ -29,14 +29,13 @@ Setup Test Folder
         Tap                                 ${testFolderXpath}
         Tap                                 ${LIBRARY-CREATEFOLDER-BUTTON}
     END
-    Sleep     5s
 
 Upload local images to the app
     ${firstFolderXpath}    Set Variable    xpath=(//androidx.recyclerview.widget.RecyclerView[@resource-id="${APP-ID}:id/rv_items"]/android.widget.FrameLayout)[1]
     ${firstFileXpath}      Set Variable    xpath=(//android.widget.TextView[@resource-id="${APP-ID}:id/tv_file_name"])[1]
 
     Launch MyFilesApp
-    Navigate to the Test Folder
+    Navigate to Local Images Test Folder
     Send test images to Tools app
     Wait Until Page Contains Element            ${LIBRARY-MYFILES-TITLE}
     Scroll Up And Down In Search For Element    ${LIBRARY-SHAREDIMPORT-FOLDER}

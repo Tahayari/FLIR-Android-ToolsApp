@@ -53,10 +53,10 @@ Scroll Up And Down In Search For Element
 
     ${elementIsFound}=    Run Keyword And Return Status    Wait Until Page Contains Element    ${FOLDERNAME-XPATH}
     IF    "${elementIsFound}" == "False"
-        ${elementIsFound}=    Run Keyword And Return Status    Wait Until Keyword Succeeds         5x    5ms    Scroll Down If Element Not Found    ${FOLDERNAME-XPATH}
+        ${elementIsFound}=    Run Keyword And Return Status    Wait Until Keyword Succeeds         5x    50ms    Scroll Down If Element Not Found    ${FOLDERNAME-XPATH}
     END
     IF    "${elementIsFound}" == "False"
-        Run Keyword And Ignore Error    Wait Until Keyword Succeeds         5x    5ms    Scroll Up If Element Not Found    ${FOLDERNAME-XPATH}
+        Run Keyword And Ignore Error    Wait Until Keyword Succeeds         5x    50ms    Scroll Up If Element Not Found    ${FOLDERNAME-XPATH}
     END
     Register Keyword To Run On Failure    ${previousKeyword}
     Wait Until Page Contains Element    ${FOLDERNAME-XPATH}

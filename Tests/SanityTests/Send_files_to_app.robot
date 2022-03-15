@@ -15,7 +15,7 @@ Send files from local storage to Tools app
     ${firstFileXpath}      Set Variable    xpath=(//android.widget.TextView[@resource-id="${APP-ID}:id/tv_file_name"])[1]
 
     Launch MyFilesApp
-    Navigate to the Test Folder
+    Navigate to Local Images Test Folder
     ${noOfFilesSentFromMyFiles}                 Send Test Images To Tools App
     Wait Until Page Contains Element            ${LIBRARY-MYFILES-TITLE}
     Scroll Up And Down In Search For Element    ${LIBRARY-SHAREDIMPORT-FOLDER}

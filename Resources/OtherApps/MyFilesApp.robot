@@ -14,7 +14,7 @@ ${MYFILES-FOLDERVIEW-SELECT-COUNT}                       //android.widget.TextVi
 
 
 *** Keywords ***
-Navigate to the Test Folder
+Navigate to Local Images Test Folder
     Tap                                 ${MYFILES-INTERNALSTORAGE-BUTTON}
     Wait Until Page Contains Element    ${MYFILES-FOLDERVIEW-FLIR-FOLDER}
     Tap                                 ${MYFILES-FOLDERVIEW-FLIR-FOLDER}
