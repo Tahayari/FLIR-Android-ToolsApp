@@ -51,11 +51,17 @@ ${LIBRARY-SORTBY-MODIFIED-TICK}         id=${APP-ID}:id/iv_sort_modified_date_ch
 #***TOAST MESSAGES***
 ${LIBRARY-RENAME-SUCCESS-TOAST}         //android.widget.TextView[@text="Folder renamed"]
 ${LIBRARY-DELETE-SUCCESS-TOAST}         //*[contains(@text,"successfully deleted")]
-${LIBRARY-MOVE-SUCCESS-TOAST}           //android.widget.TextView[@text="Entity successfully moved."]
+${LIBRARY-MOVE-SUCCESS-TOAST}           //android.widget.TextView[contains(@text,"successfully moved.")]
+${LIBRARY-COPY-SUCCESS-TOAST}           //android.widget.TextView[contains(@text,"Entity successfully copied.")]
 ${LIBRARY-CREATEFOLDER-FAIL-TOAST}      //android.widget.TextView[contains(@text,"already exist")] 
 
 #*** ONBOARDING PAGE***
 ${ONBOARDING-NEXT-BUTTON}               id=${APP-ID}:id/tvNext
+
+# ***COPY/MOVE/IMPORT SELECT DESTINATION FOLDER WINDOW*** 
+${LIBRARY-SELECT-DESTFOLDER-TITLE}             //android.widget.TextView[@text="Select folder"]      #for both MOVE and COPY
+${LIBRARY-SELECT-DESTFOLDER-MOVE-BUTTON}       //android.widget.TextView[@resource-id="${APP-ID}:id/tv_proceed_button"][@text="Move"]
+${LIBRARY-SELECT-DESTFOLDER-COPY-BUTTON}       //android.widget.TextView[@resource-id="${APP-ID}:id/tv_proceed_button"][@text="Copy"]
 
 #---------------------------------------------------------------------------------------------------------------
 #-----------------------------------***    DEVICES PAGE    ***--------------------------------------------------
@@ -63,10 +69,12 @@ ${ONBOARDING-NEXT-BUTTON}               id=${APP-ID}:id/tvNext
 
 ${DEVICES-REFRESH-BUTTON}               id=${APP-ID}:id/fsiv_sync
 ${DEVICES-DEVICEDISCOVERED-LIST}        //android.widget.TextView[@resource-id="${APP-ID}:id/tv_camera_name"]
+
 ${DEVICES-DESTFOLDER-TITLE}             //android.widget.TextView[@text="Select folder"]
 ${DEVICES-DESTFOLDER-IMPORT-BUTTON}     //android.widget.TextView[@resource-id="${APP-ID}:id/tv_proceed_button"]
 ${DEVICES-DESTFOLDER-FOLDER-LIST}       //android.widget.TextView[@resource-id="${APP-ID}:id/tv_file_name"]
 ${DEVICES-DESTFOLDER-LOADING-WINDOW}    //android.widget.TextView[contains(@text,"Reading files from camera")]
+
 ${DEVICES-IMPORTSTARTED-TOAST}          //android.widget.TextView[@text="Import started"]
 ${DEVICES-IMPORTFINISHED-TOAST}         //android.widget.TextView[@text="Import finished"]
 

@@ -1,5 +1,6 @@
 *** Settings ***
 Library         String
+Library    Collections
 Resource        Config.robot
 Resource        Locators.robot
 Resource        ../Resources/Pages/LibraryPage.robot
@@ -51,7 +52,7 @@ Scroll Up And Down In Search For Element
     #temporarily disable Capture screenshot on failure functionality
     ${previousKeyword}=    Register Keyword To Run On Failure      Nothing
 
-    ${elementIsFound}=    Run Keyword And Return Status    Wait Until Page Contains Element    ${FOLDERNAME-XPATH}
+    ${elementIsFound}=    Run Keyword And Return Status    Wait Until Page Contains Element    ${FOLDERNAME-XPATH}    1
     IF    "${elementIsFound}" == "False"
         ${elementIsFound}=    Run Keyword And Return Status    Wait Until Keyword Succeeds         5x    50ms    Scroll Down If Element Not Found    ${FOLDERNAME-XPATH}
     END
@@ -59,7 +60,7 @@ Scroll Up And Down In Search For Element
         Run Keyword And Ignore Error    Wait Until Keyword Succeeds         5x    50ms    Scroll Up If Element Not Found    ${FOLDERNAME-XPATH}
     END
     Register Keyword To Run On Failure    ${previousKeyword}
-    Wait Until Page Contains Element    ${FOLDERNAME-XPATH}
+    Wait Until Page Contains Element    ${FOLDERNAME-XPATH}    1
 
 Skip Tutorial
     Tap                                  ${ONBOARDING-NEXT-BUTTON}
@@ -76,3 +77,23 @@ Skip First Time Open
     Dismiss Meterlink Support Notification
     Dismiss Meterlink Support Notification  #existing bug that displays the Meterlink notification twice when the app is opened for the first time
     Tap                                  ${NAVIGATION-LIBRARY-BUTTON}
+
+Copy File To Destination Folder
+    [Arguments]             ${fileName}        ${destFolderName}
+    [Documentation]         Copy a single file to the destFolderName location
+    ...    destFolderName must be in the /root folder. FileName must be in the same view where the Copy operation was
+    ...    initiated from
+    ${destFolderXpath}    Set Variable    //android.widget.TextView[@text="${destFolderName}"]
+    # Sleep    2s
+    Scroll Up And Down In Search For Element        //android.widget.TextView[@text="${fileName}"]
+    Open Options Menu For File/Folder       ${fileName}
+    # Sleep    2s
+    Wait Until Page Contains Element        ${LIBRARY-OPTIONS-COPY}
+    Tap                                     ${LIBRARY-OPTIONS-COPY}
+    Wait Until Page Contains Element        ${LIBRARY-SELECT-DESTFOLDER-TITLE}
+    # Sleep    1s
+    Scroll Up And Down In Search For Element    ${destFolderXpath}
+    Tap        ${destFolderXpath}
+    Element Should Be Enabled               ${LIBRARY-SELECT-DESTFOLDER-COPY-BUTTON}
+    Tap                                     ${LIBRARY-SELECT-DESTFOLDER-COPY-BUTTON}
+    Wait Until Page Contains Element        ${LIBRARY-COPY-SUCCESS-TOAST}

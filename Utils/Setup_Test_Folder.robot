@@ -1,5 +1,4 @@
 *** Settings ***
-Library         AppiumLibrary
 Resource        ../Resources/Config.robot
 Resource        ../Resources/UserDefinedKeywords.robot
 Resource        ../Resources/OtherApps/MyFilesApp.robot
@@ -13,12 +12,12 @@ ${testFolderXpath}      xpath=//android.widget.TextView[@resource-id="${APP-ID}:
 *** Keywords ***
 Setup Test Folder
     [Documentation]     Navigate to Test Folder that contains test images. If it doesn't exist, import images and navigate to it
-    Create a new folder           ${testFolderName}
-    ${folderAlreadyExists}        Run Keyword And Return Status    Wait Until Page Contains Element    ${LIBRARY-CREATEFOLDER-FAIL-TOAST}
+    ${folderWasCreated}        Run Keyword And Return Status    Create a new folder           ${testFolderName}
 
-    IF    '${folderAlreadyExists}' == 'True'
+    IF    '${folderWasCreated}' == 'False'
         Go Back
-        Wait Until Page Contains Element    ${testFolderXpath}
+        # Wait Until Page Contains Element    ${testFolderXpath}
+        Scroll Up And Down In Search For Element    ${testFolderXpath}
         Tap                                 ${testFolderXpath}
     ELSE
         Upload local images to the app
@@ -26,8 +25,11 @@ Setup Test Folder
         Tap                                 ${LIBRARY-ADDFOLDER-BUTTON}
         Wait Until Page Contains Element    ${LIBRARY-OPTIONS-MOVE}
         Tap                                 ${LIBRARY-OPTIONS-MOVE}
+        Scroll Up And Down In Search For Element    ${testFolderXpath}
         Tap                                 ${testFolderXpath}
+        Sleep     1.5s
         Tap                                 ${LIBRARY-CREATEFOLDER-BUTTON}
+        Wait Until Page Contains Element    ${LIBRARY-MOVE-SUCCESS-TOAST}
     END
 
 Upload local images to the app
@@ -40,6 +42,8 @@ Upload local images to the app
     Wait Until Page Contains Element            ${LIBRARY-MYFILES-TITLE}
     Scroll Up And Down In Search For Element    ${LIBRARY-SHAREDIMPORT-FOLDER}
     Tap                                         ${LIBRARY-SHAREDIMPORT-FOLDER}
+    SortBy Name
+    OrderBy Descending
     Wait Until Page Contains Element            ${firstFolderXpath}
     Tap                                         ${firstFolderXpath}
     Wait Until Page Contains Element            ${firstFileXpath}
