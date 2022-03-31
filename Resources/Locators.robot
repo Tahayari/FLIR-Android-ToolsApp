@@ -64,6 +64,22 @@ ${LIBRARY-SELECT-DESTFOLDER-MOVE-BUTTON}       //android.widget.TextView[@resour
 ${LIBRARY-SELECT-DESTFOLDER-COPY-BUTTON}       //android.widget.TextView[@resource-id="${APP-ID}:id/tv_proceed_button"][@text="Copy"]
 
 #---------------------------------------------------------------------------------------------------------------
+#-----------------------------------***    IMAGE DETAILS PAGE    ***--------------------------------------------
+#---------------------------------------------------------------------------------------------------------------
+
+${IMGDETAILS-DETAILS-BUTTON}            id=${APP-ID}:id/btnFlirDetails
+${IMGDETAILS-NOTES-BUTTON}              id=${APP-ID}:id/btnFlirNotes
+${IMGDETAILS-MEASUREMENTS-BUTTON}       id=${APP-ID}:id/btnFlirMeasurements
+${IMGDETAILS-LOCATION-BUTTON}           id=${APP-ID}:id/btnFlirLocation
+
+# ***NOTES PAGE***
+${IMGDETAILS-NOTES-PAGE-TITLE}          //android.widget.TextView[@text="Notes"]
+${IMGDETAILS-NOTES-PAGE-CLOSE-BUTTON}   id=${APP-ID}:id/iv_close_button
+${IMGDETAILS-NOTES-PAGE-EDIT-BUTTON}    //android.widget.TextView[@resource-id="${APP-ID}:id/tv_proceed_button"][@text="Edit"]
+${IMGDETAILS-NOTES-PAGE-TEXTAREA}       id=${APP-ID}:id/et_notes
+${IMGDETAILS-NOTES-PAGE-SAVE-BUTTON}    //android.widget.TextView[@resource-id="${APP-ID}:id/tv_proceed_button"][@text="Save"]
+
+#---------------------------------------------------------------------------------------------------------------
 #-----------------------------------***    DEVICES PAGE    ***--------------------------------------------------
 #---------------------------------------------------------------------------------------------------------------
 

@@ -6,6 +6,7 @@ Resource            ../../Resources/Pages/LibraryPage.robot
 
 *** Test Cases ***
 Create a new folder
+    [Documentation]                     Creates a new folder with a random name of 7 characters
     [Tags]                              Sanity
     ${FOLDERNAME}=                      Generate Random String      7
     ${FOLDERNAME-XPATH}=                Set Variable       //android.widget.TextView[@text="${FOLDERNAME}"]

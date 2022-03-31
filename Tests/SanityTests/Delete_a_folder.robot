@@ -8,6 +8,7 @@ Resource            ../../Resources/Pages/LibraryPage.robot
 
 *** Test Cases ***
 Delete a folder
+    [Documentation]                     Creates a new folder with a random name of 7 characters and then deletes it
     [Tags]                              Sanity
     ${folderName}=                      Generate Random String      7
     ${FOLDERNAME-XPATH}=                Set Variable       //android.widget.TextView[@text="${folderName}"]
