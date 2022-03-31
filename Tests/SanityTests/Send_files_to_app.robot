@@ -3,7 +3,6 @@ Documentation       Send files from local storage and send them to the app. File
 # Suite Setup         Launch ToolsAndroid
 Suite Teardown      Close Application
 Resource            ../../Resources/UserDefinedKeywords.robot
-Resource            ../../Resources/OtherApps/MyFilesApp.robot
 Resource            ../../Resources/Locators.robot
 Resource            ../../Resources/Pages/LibraryPage.robot
 

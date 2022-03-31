@@ -1,10 +1,11 @@
 *** Settings ***
 Library         String
-Library    Collections
+Library         Collections
 Resource        Config.robot
 Resource        Locators.robot
 Resource        ../Resources/Pages/LibraryPage.robot
 Resource        ../Resources/Pages/DevicesPage.robot
+Resource        ../Resources/OtherApps/MyFilesApp.robot
 
 *** Variables ***
 
@@ -60,7 +61,7 @@ Scroll Up And Down In Search For Element
         Run Keyword And Ignore Error    Wait Until Keyword Succeeds         5x    50ms    Scroll Up If Element Not Found    ${FOLDERNAME-XPATH}
     END
     Register Keyword To Run On Failure    ${previousKeyword}
-    Wait Until Page Contains Element    ${FOLDERNAME-XPATH}    1
+    Wait Until Page Contains Element      ${FOLDERNAME-XPATH}    2
 
 Skip Tutorial
     Tap                                  ${ONBOARDING-NEXT-BUTTON}
@@ -97,3 +98,43 @@ Copy File To Destination Folder
     Element Should Be Enabled               ${LIBRARY-SELECT-DESTFOLDER-COPY-BUTTON}
     Tap                                     ${LIBRARY-SELECT-DESTFOLDER-COPY-BUTTON}
     Wait Until Page Contains Element        ${LIBRARY-COPY-SUCCESS-TOAST}
+
+Setup Test Folder
+    [Documentation]     Navigate to Test Folder that contains test images. If it doesn't exist, import images and navigate to it
+    ${testFolderName}     Set Variable   Test Folder
+    ${testFolderXpath}    Set Variable   xpath=//android.widget.TextView[@resource-id="${APP-ID}:id/tv_file_name"][@text="${testFolderName}"]
+    ${folderWasCreated}   Run Keyword And Return Status    Create a new folder           ${testFolderName}
+
+    IF    '${folderWasCreated}' == 'False'
+        Go Back
+        # Wait Until Page Contains Element    ${testFolderXpath}
+        Scroll Up And Down In Search For Element    ${testFolderXpath}
+        Tap                                 ${testFolderXpath}
+    ELSE
+        Upload local images to the app
+        Select All
+        Tap                                 ${LIBRARY-ADDFOLDER-BUTTON}
+        Wait Until Page Contains Element    ${LIBRARY-OPTIONS-MOVE}
+        Tap                                 ${LIBRARY-OPTIONS-MOVE}
+        Scroll Up And Down In Search For Element    ${testFolderXpath}
+        Tap                                 ${testFolderXpath}
+        Sleep     1.5s
+        Tap                                 ${LIBRARY-CREATEFOLDER-BUTTON}
+        Wait Until Page Contains Element    ${LIBRARY-MOVE-SUCCESS-TOAST}
+    END
+
+Upload local images to the app
+    ${firstFolderXpath}    Set Variable    xpath=(//androidx.recyclerview.widget.RecyclerView[@resource-id="${APP-ID}:id/rv_items"]/android.widget.FrameLayout)[1]
+    ${firstFileXpath}      Set Variable    xpath=(//android.widget.TextView[@resource-id="${APP-ID}:id/tv_file_name"])[1]
+
+    Launch MyFilesApp
+    Navigate to Local Images Test Folder
+    Send test images to Tools app
+    Wait Until Page Contains Element            ${LIBRARY-MYFILES-TITLE}
+    Scroll Up And Down In Search For Element    ${LIBRARY-SHAREDIMPORT-FOLDER}
+    Tap                                         ${LIBRARY-SHAREDIMPORT-FOLDER}
+    SortBy Name
+    OrderBy Descending
+    Wait Until Page Contains Element            ${firstFolderXpath}
+    Tap                                         ${firstFolderXpath}
+    Wait Until Page Contains Element            ${firstFileXpath}

@@ -58,7 +58,7 @@ Open Options Menu For File/Folder
     [Documentation]                     Opens the More options menu for the file or folder name sent as an argument
     [Arguments]     ${FILENAME}
     ${OPTIONS-BUTTON-XPATH}=            Set Variable    //android.widget.TextView[@text="${FILENAME}"]//parent::android.view.ViewGroup//android.widget.FrameLayout[@resource-id="${APP-ID}:id/fl_option_menu"]
-    Wait Until Page Contains Element    ${OPTIONS-BUTTON-XPATH}
+    Wait Until Page Contains Element    ${OPTIONS-BUTTON-XPATH}     7
     Tap                                 ${OPTIONS-BUTTON-XPATH}
     Wait Until Page Contains Element    ${LIBRARY-OPTIONS-CLOSE}    7
 

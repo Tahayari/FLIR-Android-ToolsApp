@@ -2,14 +2,15 @@
 Suite Setup         Launch ToolsAndroid
 Suite Teardown      Close Application
 Resource            ../../Resources/UserDefinedKeywords.robot
-Resource            ../../Utils/Setup_Test_Folder.robot
 
 *** Test Cases ***
 Just for Test
-    [Documentation]     Move file GPS_France.jpg from the Test Folder to a newly created folder       
+    [Documentation]     Move first file from the Test Folder to a newly created folder       
     [Tags]              Sanity
-    ${filename}                        Set Variable     GPS_France.jpg
     ${destinationFolder}               Generate Random String     7
-    Create a new folder                {destinationFolder}
+    Create a new folder                ${destinationFolder}
     Setup Test Folder
-    Copy File To Destination Folder    ${filename}    ${destinationFolder}
+    ${fileNameXpath}    Set Variable    xpath=(//android.widget.TextView[@resource-id="${APP-ID}:id/tv_file_name"])[1]
+    Wait Until Page Contains Element    ${fileNameXpath}
+    ${fileName}    Get Text        ${fileNameXpath}
+    Copy File To Destination Folder    ${fileName}    ${destinationFolder}
