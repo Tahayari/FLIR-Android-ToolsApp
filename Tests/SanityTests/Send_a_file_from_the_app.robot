@@ -10,8 +10,8 @@ Resource            ../../Utils/Setup_Test_Folder.robot
 
 *** Test Cases ***
 Send files from local storage to Tools app
+    [Documentation]                             Send/share a file from the app's Library, more specifically from the Test Folder
     [Tags]                                      Sanity
-    [Documentation]                             Send/share a file from the app's Library
     ${firstFolderXpath}    Set Variable    xpath=(//androidx.recyclerview.widget.RecyclerView[@resource-id="${APP-ID}:id/rv_items"]/android.widget.FrameLayout)[1]
     ${firstFileXpath}      Set Variable    xpath=(//android.widget.TextView[@resource-id="${APP-ID}:id/tv_file_name"])[1]
     ${androidContentPanelId}   Set Variable     id=android:id/contentPanel

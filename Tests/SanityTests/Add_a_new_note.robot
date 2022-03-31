@@ -6,6 +6,8 @@ Resource            ../../Utils/Setup_Test_Folder.robot
 
 *** Test Cases ***
 Just for Test
+    [Documentation]        Adds a note to the first image from Test Folder
+    [Tags]                 Sanity
     ${firstFileXpath}      Set Variable    xpath=(//android.widget.TextView[@resource-id="${APP-ID}:id/tv_file_name"])[1]
     ${noteString}          Set Variable    This is a sample of a Note...
     Setup Test Folder

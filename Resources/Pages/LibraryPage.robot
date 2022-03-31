@@ -8,12 +8,12 @@ Library         String
 Scroll Down If Element Not Found
     [Arguments]                    ${ELEMENT-TO-BE-FOUND}
     Swipe Up                       ${LIBRARY-FILESANDFOLDERS-LIST}
-    Page Should Contain Element    ${ELEMENT-TO-BE-FOUND}
+    Page Should Contain Element    ${ELEMENT-TO-BE-FOUND}    2
 
 Scroll Up If Element Not Found
     [Arguments]                    ${ELEMENT-TO-BE-FOUND}
     Swipe Down                     ${LIBRARY-FILESANDFOLDERS-LIST}
-    Page Should Contain Element    ${ELEMENT-TO-BE-FOUND}
+    Page Should Contain Element    ${ELEMENT-TO-BE-FOUND}    2
 
 Swipe Up
     [Arguments]    ${LIST-ID}
@@ -26,7 +26,7 @@ Swipe Up
     ${END_X}=           Evaluate      ${ELEMENT_LOCATION['x']} + (${ELEMENT_SIZE['width']} * 0.5)
     ${END_Y}=           Evaluate      ${ELEMENT_LOCATION['y']} + (${ELEMENT_SIZE['height']} * 0.5) #default 0.3
     Swipe               ${START_X}    ${START_Y}  ${END_X}  ${END_Y}  200
-    Sleep  1
+    # Sleep  1
 
 Swipe Down
     #LIST-ID is the id of the elements in the Library
@@ -40,7 +40,7 @@ Swipe Down
     ${END_X}=           Evaluate      ${ELEMENT_LOCATION['x']} + (${ELEMENT_SIZE['width']} * 0.5)
     ${END_Y}=           Evaluate      ${ELEMENT_LOCATION['y']} + (${ELEMENT_SIZE['height']} * 0.7)
     Swipe               ${START_X}    ${START_Y}  ${END_X}  ${END_Y}  200
-    Sleep  1
+    # Sleep  1
 
 Create a new folder
     [Documentation]                    Create a new folder with the name sent in the argument
@@ -50,13 +50,15 @@ Create a new folder
     Wait Until Page Contains Element            ${LIBRARY-NEWFOLDER-TITLE}
     Input Text                                  ${LIBRARY-FILEFOLDERNAME-FIELD}     ${FOLDERNAME}
     Tap                                         ${LIBRARY-CREATEFOLDER-BUTTON}
-    Wait Until Page Contains Element            ${NAVIGATION-LIBRARY-BUTTON}
-    Scroll Up And Down In Search For Element    ${FOLDERNAME-XPATH}        #should have a success toast message
+    # Wait Until Page Contains Element            ${NAVIGATION-LIBRARY-BUTTON}
+    # Scroll Up And Down In Search For Element    ${FOLDERNAME-XPATH}        #should have a success toast message
+    Wait Until Page Does Not Contain Element    ${LIBRARY-NEWFOLDER-TITLE}    error=Folder with name "${FOLDERNAME}" was not created successfully
     
 Open Options Menu For File/Folder
     [Documentation]                     Opens the More options menu for the file or folder name sent as an argument
     [Arguments]     ${FILENAME}
     ${OPTIONS-BUTTON-XPATH}=            Set Variable    //android.widget.TextView[@text="${FILENAME}"]//parent::android.view.ViewGroup//android.widget.FrameLayout[@resource-id="${APP-ID}:id/fl_option_menu"]
+    Wait Until Page Contains Element    ${OPTIONS-BUTTON-XPATH}
     Tap                                 ${OPTIONS-BUTTON-XPATH}
     Wait Until Page Contains Element    ${LIBRARY-OPTIONS-CLOSE}    7
 
